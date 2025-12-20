@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage(this.startQuiz, {super.key});
+
+  final Function() startQuiz;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class HomePage extends StatelessWidget {
           ),
           SizedBox(height: 30),
           OutlinedButton.icon(
-            onPressed: () {},
+            onPressed: startQuiz,
             style: OutlinedButton.styleFrom(
               backgroundColor: Colors.purple,
               foregroundColor: Colors.white,
