@@ -9,7 +9,12 @@ class HomePage extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset('assets/images/quiz-logo.png', width: 300, height: 300),
+          Image.asset(
+            'assets/images/quiz-logo.png',
+            width: 300,
+            height: 300,
+            color: Color.fromARGB(150, 255, 255, 255),
+          ),
           SizedBox(height: 60),
           const Text(
             'Welcome to the Quiz App!',
@@ -20,14 +25,15 @@ class HomePage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 30),
-          OutlinedButton(
+          OutlinedButton.icon(
             onPressed: () {},
             style: OutlinedButton.styleFrom(
               backgroundColor: Colors.purple,
               foregroundColor: Colors.white,
               textStyle: TextStyle(fontSize: 18),
             ),
-            child: const Text('Get Started'),
+            icon: Icon(Icons.arrow_forward),
+            label: const Text('Get Started'),
           ),
         ],
       ),
