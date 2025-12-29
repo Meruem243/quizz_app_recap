@@ -18,16 +18,19 @@ class _QuizState extends State<Quiz> {
     });
   }
 
+  final List<String> selectedAnswers = <String>[];
+
+  void chooseAnswer(String answer) {
+    selectedAnswers.add(answer);
+  }
+
   @override
   Widget build(BuildContext context) {
-
     Widget screenWidget = HomePage(switchScreen);
 
     if (activeScreen == "question-screen") {
-      screenWidget = QuestionScreen();
+      screenWidget = QuestionScreen(onSelectAnswer: chooseAnswer);
     }
-
-
 
     return MaterialApp(
       home: Scaffold(
