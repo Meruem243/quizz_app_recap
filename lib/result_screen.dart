@@ -3,9 +3,10 @@ import 'data/questions.dart';
 import 'question_summary.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key, required this.chosenAnswers});
+  const ResultScreen({super.key, required this.chosenAnswers, required this.onRestart});
 
   final List<String> chosenAnswers;
+  final VoidCallback onRestart;
 
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
@@ -56,9 +57,7 @@ class ResultScreen extends StatelessWidget {
             QuestionSummary(summaryData: sumarryData),
             SizedBox(height: 40),
             TextButton(
-              onPressed: () {
-                // Handle button press
-              },
+              onPressed: onRestart,
               child: Text('Back to Home'),
             ),
           ],
