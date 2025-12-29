@@ -22,6 +22,7 @@ class QuestionSummary extends StatelessWidget {
                   Text('Correct Answer: ${data['correct_answer']}'),
                   SizedBox(height: 5),
                   Text('Your Answer: ${data['chosen_answer']}'),
+                  SizedBox(height: 20),
                 ],
               ),
             ),
