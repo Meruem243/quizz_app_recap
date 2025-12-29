@@ -54,7 +54,7 @@ class ResultScreen extends StatelessWidget {
             ),
             SizedBox(height: 30),
             QuestionSummary(summaryData: sumarryData),
-            SizedBox(height: 30),
+            SizedBox(height: 40),
             TextButton(
               onPressed: () {
                 // Handle button press
