@@ -7,33 +7,72 @@ class QuestionSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
-      child: SingleChildScrollView(
-        child: Column(
-          children: summaryData.map((data) {
-            return Row(
-              children: [
-                Text(((data['question_index'] as int) + 1).toString()),
-                SizedBox(width: 10),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(data['question'] as String),
-                      SizedBox(height: 5),
-                      Text('Correct Answer: ${data['correct_answer']}'),
-                      SizedBox(height: 5),
-                      Text('Your Answer: ${data['chosen_answer']}'),
-                      SizedBox(height: 20),
-                    ],
+    return ListView.builder(
+      itemCount: summaryData.length,
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      itemBuilder: (context, idx) {
+        final data = summaryData[idx];
+        final int index = data['question_index'] as int;
+        final String question = data['question'] as String;
+        final String correct = data['correct_answer'] as String;
+        final String chosen = data['chosen_answer'] as String;
+        final bool isCorrect = chosen == correct;
+
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CircleAvatar(
+                radius: 18,
+                backgroundColor: isCorrect ? Colors.green : Colors.red,
+                child: Text(
+                  (index + 1).toString(),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ],
-            );
-          }).toList(),
-        ),
-      ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      question,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      chosen,
+                      style: TextStyle(
+                        color: isCorrect
+                            ? Colors.greenAccent.shade100
+                            : Colors.redAccent.shade100,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    if (!isCorrect) ...[
+                      const SizedBox(height: 6),
+                      Text(
+                        'Correct: $correct',
+                        style: const TextStyle(
+                          color: Colors.white70,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
